@@ -13,6 +13,14 @@ namespace Bookkeeper
         private int month;
         private bool isIncome;
 
+        public UserTransaction(string title, int amount, int month, bool isIncome)
+        {
+            this.title = title;
+            this.amount = amount;
+            this.month = month;
+            this.isIncome = isIncome;
+        }
+
         // Getters and setters
 
         public int getAmount()
