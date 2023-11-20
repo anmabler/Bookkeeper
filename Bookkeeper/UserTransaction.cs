@@ -27,6 +27,10 @@ namespace Bookkeeper
         {
             return title;
         }
+        public bool getIsIncome()
+        {
+            return isIncome;
+        }
         
         public void editTransaction(string title, int amount, int month, bool isIncome)
         {
