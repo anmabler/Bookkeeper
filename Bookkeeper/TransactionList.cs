@@ -7,8 +7,30 @@ using System.Threading.Tasks;
 namespace Bookkeeper
 {
     internal class TransactionList
-    {
+    {  
         public List<UserTransaction> userTransactionList = new List<UserTransaction>();
+
+        // All sorting methods are in ascending order
+        public void sortByMonth()
+        {
+            var listByMonth = userTransactionList.OrderBy(transaction => transaction.getMonth());
+            userTransactionList = listByMonth.ToList();
+            displayAllTransactions();
+        }
+
+        public void sortByAmount()
+        {
+            var listByAmount = userTransactionList.OrderBy(transaction => transaction.getAmount());
+            userTransactionList = listByAmount.ToList();
+            displayAllTransactions();
+        }
+
+        public void sortByTitle()
+        {
+            var listByTitle = userTransactionList.OrderBy(transaction => transaction.getTitle());
+            userTransactionList = listByTitle.ToList();
+            displayAllTransactions();
+        }
 
         public void displayIncome()
         {

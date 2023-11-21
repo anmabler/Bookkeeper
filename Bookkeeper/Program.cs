@@ -11,5 +11,8 @@ transactionList.userTransactionList.AddRange(new List<UserTransaction>
 });
 
 //transactionList.displayExpense();
-transactionList.displayIncome();
+//transactionList.displayIncome();
 //transactionList.displayAllTransactions();
+//transactionList.sortByMonth();
+//transactionList.sortByAmount();
+//transactionList.sortByTitle();
