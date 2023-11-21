@@ -1,6 +1,7 @@
 ﻿using Bookkeeper;
 
 TransactionList transactionList = new TransactionList();
+// ! List needs to be read from file
 transactionList.userTransactionList.AddRange(new List<UserTransaction>
 {
     new UserTransaction("Köpa skor", 800, 11, false),
@@ -10,11 +11,13 @@ transactionList.userTransactionList.AddRange(new List<UserTransaction>
     new UserTransaction("Simskola", 1600, 12, false),
 
 });
+MenuOptions menu = new MenuOptions();
+menu.mainMenu(transactionList);
 
 //transactionList.displayAllTransactions();
 // the true argument means descending order.
-transactionList.sortByMonth(true);
-transactionList.displayExpense();
+//transactionList.sortByMonth(true);
+//transactionList.displayExpense();
 //transactionList.displayIncome();
 //transactionList.sortByAmount(false);
 //transactionList.sortByTitle(true);
