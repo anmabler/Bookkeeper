@@ -20,7 +20,7 @@ namespace Bookkeeper
             }
             else
             {
-            userTransactionList = userTransactionList.OrderBy(transaction => transaction.getMonth()).ToList();
+                userTransactionList = userTransactionList.OrderBy(transaction => transaction.getMonth()).ToList();
             }
         }
 

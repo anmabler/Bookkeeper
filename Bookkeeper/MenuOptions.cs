@@ -28,7 +28,7 @@ namespace Bookkeeper
                     showAscendingDescending(userTransactions);
                     break;
                 case "2":
-                    addNewItem();
+                    addNewItem(userTransactions);
                     break;
                 case "3":
                     editItem();
@@ -75,6 +75,7 @@ namespace Bookkeeper
         {
 
             // I already wrote the methods to take an argument, that is why I chose to show all possible combinations for sorting at once.
+            // At first I wanted to choose ascending/descending in another step.
             Console.WriteLine("Show items");
             Console.WriteLine("Pick an option:");
             Console.WriteLine("1/ Sort by month ascending");
@@ -114,8 +115,42 @@ namespace Bookkeeper
             }
 
         }
-        public void addNewItem()
+        public void addNewItem(TransactionList transactions)
         {
+            
+
+            Console.WriteLine("Add a new item");
+            Console.Write("Add title: ");
+            var titleInput = Console.ReadLine();
+
+            Console.Write("Add amount: ");
+            var amountInput = Console.ReadLine();
+            bool isAmountInt = int.TryParse(amountInput, out var amount);
+
+            Console.Write("Add month (number): ");
+            var monthInput = Console.ReadLine();
+            bool isMonthInt = int.TryParse(monthInput, out var month);
+
+            Console.WriteLine("Pick an option:");
+            Console.WriteLine("1/ Expense");
+            Console.WriteLine("2/ Income");
+            var transactionInput = Console.ReadLine();
+            bool isIncome = true;
+            if (transactionInput == "1")
+            {
+                isIncome = false;
+            }
+            else if(transactionInput == "2")
+            {
+                isIncome = true;
+            }
+            else 
+            {
+                Console.WriteLine("Invalid input");
+            }
+
+            UserTransaction transaction = new UserTransaction(titleInput, amount, month, isIncome);
+            
 
         }
         public void editItem()
