@@ -29,6 +29,7 @@ namespace Bookkeeper
                     break;
                 case "2":
                     addNewItem(userTransactions);
+                    userTransactions.displayAllTransactions();
                     break;
                 case "3":
                     editItem();
@@ -115,6 +116,8 @@ namespace Bookkeeper
             }
 
         }
+        // Method for adding a new item
+        // Checks the input for int and that month is not greater than 12.
         public void addNewItem(TransactionList transactions)
         {
             
@@ -123,13 +126,44 @@ namespace Bookkeeper
             Console.Write("Add title: ");
             var titleInput = Console.ReadLine();
 
-            Console.Write("Add amount: ");
-            var amountInput = Console.ReadLine();
-            bool isAmountInt = int.TryParse(amountInput, out var amount);
+            bool isAmountInt = false;
+            string amountInput;
+            int amount;
 
-            Console.Write("Add month (number): ");
-            var monthInput = Console.ReadLine();
-            bool isMonthInt = int.TryParse(monthInput, out var month);
+            do
+            {
+                Console.Write("Add amount: ");
+                amountInput = Console.ReadLine();
+                isAmountInt = int.TryParse(amountInput, out amount);
+                if (!isAmountInt)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Incorrect price format. Please enter only numbers.");
+                    Console.ResetColor();
+                }
+            }
+            while (!isAmountInt);
+
+            bool isMonthInt = false;
+            string monthInput;
+            int month;
+            do
+            {
+                Console.Write("Add month (number): ");
+                monthInput = Console.ReadLine();
+                isMonthInt = int.TryParse(monthInput, out month);
+                if (!isAmountInt)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Incorrect price format. Please enter only numbers.");
+                    Console.ResetColor();
+                }
+                if (month > 12)
+                {
+                    Console.WriteLine("Enter a valid month");
+                }
+            }
+            while (!isMonthInt || month > 12);
 
             Console.WriteLine("Pick an option:");
             Console.WriteLine("1/ Expense");
@@ -150,8 +184,8 @@ namespace Bookkeeper
             }
 
             UserTransaction transaction = new UserTransaction(titleInput, amount, month, isIncome);
-            
-
+            transactions.userTransactionList.Add(transaction);
+            Console.WriteLine("Item added");
         }
         public void editItem()
         {
