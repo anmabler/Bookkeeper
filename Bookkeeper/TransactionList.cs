@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,26 +11,41 @@ namespace Bookkeeper
     {  
         public List<UserTransaction> userTransactionList = new List<UserTransaction>();
 
-        // All sorting methods are in ascending order
-        public void sortByMonth()
+        public void sortByMonth(bool sortByDesc)
         {
-            var listByMonth = userTransactionList.OrderBy(transaction => transaction.getMonth());
-            userTransactionList = listByMonth.ToList();
-            displayAllTransactions();
+            if(sortByDesc)
+            {
+                userTransactionList = userTransactionList.OrderByDescending(transaction => transaction.getMonth()).ToList();
+
+            }
+            else
+            {
+            userTransactionList = userTransactionList.OrderBy(transaction => transaction.getMonth()).ToList();
+            }
         }
 
-        public void sortByAmount()
+        public void sortByAmount(bool sortByDesc)
         {
-            var listByAmount = userTransactionList.OrderBy(transaction => transaction.getAmount());
-            userTransactionList = listByAmount.ToList();
-            displayAllTransactions();
+            if (sortByDesc)
+            {
+                userTransactionList = userTransactionList.OrderByDescending(transaction => transaction.getAmount()).ToList();
+            }
+            else
+            {
+                userTransactionList = userTransactionList.OrderBy(transaction => transaction.getAmount()).ToList();
+            }
         }
 
-        public void sortByTitle()
+        public void sortByTitle(bool sortByDesc)
         {
-            var listByTitle = userTransactionList.OrderBy(transaction => transaction.getTitle());
-            userTransactionList = listByTitle.ToList();
-            displayAllTransactions();
+            if(sortByDesc)
+            {
+                 userTransactionList = userTransactionList.OrderByDescending(transaction => transaction.getTitle()).ToList();
+            }
+            else
+            {
+                userTransactionList = userTransactionList.OrderBy(transaction => transaction.getTitle()).ToList();
+            }
         }
 
         public void displayIncome()

@@ -7,12 +7,14 @@ transactionList.userTransactionList.AddRange(new List<UserTransaction>
     new UserTransaction("Oktober lön", 849, 10, true),
     new UserTransaction("Barnbidrag", 650, 10, true),
     new UserTransaction("Julklappar", 2000, 11, false),
+    new UserTransaction("Simskola", 1600, 12, false),
 
 });
 
-//transactionList.displayExpense();
-//transactionList.displayIncome();
 //transactionList.displayAllTransactions();
-//transactionList.sortByMonth();
-//transactionList.sortByAmount();
-//transactionList.sortByTitle();
+// the true argument means descending order.
+transactionList.sortByMonth(true);
+transactionList.displayExpense();
+//transactionList.displayIncome();
+//transactionList.sortByAmount(false);
+//transactionList.sortByTitle(true);
