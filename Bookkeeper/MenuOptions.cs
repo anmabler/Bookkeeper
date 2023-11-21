@@ -195,6 +195,44 @@ namespace Bookkeeper
             {
                 Console.WriteLine($"{i} {transactionList[i].getTitle()} {transactionList[i].getAmount()} {transactionList[i].getMonth()} {transactionList[i].getIsIncome()}");
             }
+            Console.Write("Enter number: ");
+            var editNumInput = Console.ReadLine();
+            int.TryParse(editNumInput, out int editNum);
+            Console.WriteLine($"Editing: {transactionList[editNum].getTitle()}");
+            Console.WriteLine("1/ Edit title");
+            Console.WriteLine("2/ Edit amount");
+            Console.WriteLine("3/ Edit month");
+            Console.WriteLine("4/ Edit all");
+            Console.WriteLine("5/ Delete");
+            // It makes no sense to edit this
+            //Console.WriteLine("4/ Edit income/expense");
+            var editChoice = Console.ReadLine();
+            switch (editChoice)
+            {
+                case "1":
+                    Console.WriteLine("Edit title");
+                    break;
+                case "2":
+                    Console.WriteLine("Edit amount");
+                    break;
+                case "3":
+                    Console.WriteLine("Edit month");
+                    break;
+                case "4":
+                    Console.WriteLine("Edit all");
+                    break;
+                case "5":
+                    Console.WriteLine("Delete item");
+                    break;
+                default:
+                    Console.WriteLine("Invalid selection");
+                    break;
+            }
+
+
+            // Get all inputs from user 
+            // if null use the original 
+            // check that index is not out of range
 
         }
         public void saveAndExit()
