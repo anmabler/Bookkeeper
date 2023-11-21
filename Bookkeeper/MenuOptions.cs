@@ -32,7 +32,7 @@ namespace Bookkeeper
                     userTransactions.displayAllTransactions();
                     break;
                 case "3":
-                    editItem();
+                    editItem(userTransactions);
                     break;
                 case "4":
                     saveAndExit();
@@ -187,8 +187,14 @@ namespace Bookkeeper
             transactions.userTransactionList.Add(transaction);
             Console.WriteLine("Item added");
         }
-        public void editItem()
+        public void editItem(TransactionList transactions)
         {
+            var transactionList = transactions.userTransactionList;
+            Console.WriteLine("Pick an item to edit/remove:");
+            for(int i = 1; i < transactionList.Count; i++)
+            {
+                Console.WriteLine($"{i} {transactionList[i].getTitle()} {transactionList[i].getAmount()} {transactionList[i].getMonth()} {transactionList[i].getIsIncome()}");
+            }
 
         }
         public void saveAndExit()
