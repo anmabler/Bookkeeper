@@ -152,7 +152,7 @@ namespace Bookkeeper
                 Console.Write("Add month (number): ");
                 monthInput = Console.ReadLine();
                 isMonthInt = int.TryParse(monthInput, out month);
-                if (!isAmountInt)
+                if (!isMonthInt)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Incorrect price format. Please enter only numbers.");
@@ -251,6 +251,29 @@ namespace Bookkeeper
                     break;
                 case "3":
                     Console.WriteLine("Edit month");
+                    bool isMonthInt = false;
+                    string monthInput;
+                    int month;
+                    do
+                    {
+                        Console.Write("Add month (number): ");
+                        monthInput = Console.ReadLine();
+                        isMonthInt = int.TryParse(monthInput, out month);
+                        if (!isMonthInt)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Incorrect price format. Please enter only numbers.");
+                            Console.ResetColor();
+                        }
+                        if (month > 12)
+                        {
+                            Console.WriteLine("Enter a valid month");
+                        }
+                    }
+                    while (!isMonthInt || month > 12);
+                    itemToEdit.editTransaction(itemToEdit.getTitle(), itemToEdit.getMonth(), month);
+
+                    transactions.displayAllTransactions();
                     break;
                 case "4":
                     Console.WriteLine("Edit all");
