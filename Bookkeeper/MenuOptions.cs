@@ -191,14 +191,16 @@ namespace Bookkeeper
         {
             var transactionList = transactions.userTransactionList;
             Console.WriteLine("Pick an item to edit/remove:");
-            for(int i = 1; i < transactionList.Count; i++)
+            // Display all items in list with index
+            for(int i = 0; i < transactionList.Count ; i++)
             {
                 Console.WriteLine($"{i} {transactionList[i].getTitle()} {transactionList[i].getAmount()} {transactionList[i].getMonth()} {transactionList[i].getIsIncome()}");
             }
             Console.Write("Enter number: ");
             var editNumInput = Console.ReadLine();
             int.TryParse(editNumInput, out int editNum);
-            Console.WriteLine($"Editing: {transactionList[editNum].getTitle()}");
+            var itemToEdit = transactionList[editNum];
+            Console.WriteLine($"Editing: {itemToEdit.getTitle()}");
             Console.WriteLine("1/ Edit title");
             Console.WriteLine("2/ Edit amount");
             Console.WriteLine("3/ Edit month");
