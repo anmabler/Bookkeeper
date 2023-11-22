@@ -50,12 +50,14 @@ namespace Bookkeeper
 
         public void displayIncome()
         {
+            Console.WriteLine(listHeader());
             var incomeList = userTransactionList.Where(transaction => transaction.getIsIncome() == true).ToList();
             transactionOutput(incomeList);
         }
 
         public void displayExpense()
         {
+            Console.WriteLine(listHeader());
             var expenseList = userTransactionList.Where(transaction => transaction.getIsIncome() == false).ToList();
 
             transactionOutput(expenseList);
@@ -63,6 +65,7 @@ namespace Bookkeeper
 
         public void displayAllTransactions()
         {
+            Console.WriteLine(listHeader());
             transactionOutput(userTransactionList);
         }
 
@@ -70,7 +73,7 @@ namespace Bookkeeper
         {
             foreach (var transaction in list)
             {
-                Console.WriteLine($"{transaction.getTitle()} {transaction.getAmount()}  {transaction.getMonth()}  {transaction.getIsIncome()}");
+                Console.WriteLine($"{transaction.getTitle().PadRight(15)} {transaction.getAmount().ToString().PadRight(15)}  {transaction.getMonth().ToString().PadRight(15)}  {transaction.getIsIncome()}");
 
             }
         }
@@ -92,6 +95,11 @@ namespace Bookkeeper
             }
 
             return balance;
+        }
+
+        private string listHeader()
+        {
+           return "Title".PadRight(15) + "Amount".PadRight(15) + "Month".PadRight(15) + "Income?" + "\n------------------------------------------------------------";
         }
     }
 }
