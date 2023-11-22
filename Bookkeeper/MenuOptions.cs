@@ -207,6 +207,7 @@ namespace Bookkeeper
             Console.WriteLine("4/ Edit all");
             Console.WriteLine("5/ Delete");
             Console.WriteLine("-----------------------------");
+            Console.Write("Make a selection: ");
 
             // It makes no sense to edit this
             //Console.WriteLine("4/ Edit income/expense");
@@ -215,17 +216,38 @@ namespace Bookkeeper
             {
                 case "1":
                     Console.WriteLine("Edit title");
-                    Console.Write("Enter new title: ");
-                    var titleInput = Console.ReadLine();
-                    if (titleInput != null)
+                    string titleInput;
+                    do
                     {
-                        itemToEdit.editTransaction(titleInput, itemToEdit.getAmount(), itemToEdit.getMonth());
+                        Console.Write("Enter new title: ");
+                        titleInput = Console.ReadLine();
                     }
-                    Console.WriteLine(itemToEdit.ToString());
+                    while (string.IsNullOrEmpty(titleInput));
+                    
+                    itemToEdit.editTransaction(titleInput, itemToEdit.getAmount(), itemToEdit.getMonth());
+                    //Console.WriteLine(itemToEdit.ToString());
+                    transactions.displayAllTransactions();
 
                     break;
                 case "2":
                     Console.WriteLine("Edit amount");
+                    string amountInput;
+                    bool isAmountInt = false;
+                    int amount = 0;
+
+                    do
+                    {
+                        Console.Write("Enter new amount: ");
+                        amountInput = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(amountInput))
+                        {
+                            isAmountInt = int.TryParse(amountInput, out amount);
+
+                        }
+                    }
+                    while (!isAmountInt);
+                    itemToEdit.editTransaction(itemToEdit.getTitle(), amount, itemToEdit.getMonth());
+                    transactions.displayAllTransactions();
                     break;
                 case "3":
                     Console.WriteLine("Edit month");
