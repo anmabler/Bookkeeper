@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Bookkeeper
 {
@@ -33,6 +34,7 @@ namespace Bookkeeper
                     break;
                 case "3":
                     editItem(userTransactions);
+                    mainMenu(userTransactions);
                     break;
                 case "4":
                     saveAndExit();
@@ -249,6 +251,7 @@ namespace Bookkeeper
                     itemToEdit.editTransaction(itemToEdit.getTitle(), amount, itemToEdit.getMonth());
                     transactions.displayAllTransactions();
                     break;
+
                 case "3":
                     Console.WriteLine("Edit month");
                     bool isMonthInt = false;
@@ -258,7 +261,10 @@ namespace Bookkeeper
                     {
                         Console.Write("Add month (number): ");
                         monthInput = Console.ReadLine();
+                        
                         isMonthInt = int.TryParse(monthInput, out month);
+
+                        
                         if (!isMonthInt)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -267,19 +273,76 @@ namespace Bookkeeper
                         }
                         if (month > 12)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Enter a valid month");
+                            Console.ResetColor();
                         }
+                        
                     }
-                    while (!isMonthInt || month > 12);
-                    itemToEdit.editTransaction(itemToEdit.getTitle(), itemToEdit.getMonth(), month);
-
+                    while (!isMonthInt || month > 12 || string.IsNullOrEmpty(monthInput));
+                    itemToEdit.editTransaction(itemToEdit.getTitle(), itemToEdit.getAmount(), month);
                     transactions.displayAllTransactions();
                     break;
+
                 case "4":
                     Console.WriteLine("Edit all");
+                    isAmountInt = false;
+                    amount = 0;
+                    do
+                    {
+                        Console.Write("Enter new title: ");
+                        titleInput = Console.ReadLine();
+                    }
+                    while (string.IsNullOrEmpty(titleInput));
+
+                    do
+                    {
+                        Console.Write("Enter new amount: ");
+                        amountInput = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(amountInput))
+                        {
+                            isAmountInt = int.TryParse(amountInput, out amount);
+
+                        }
+                    }
+                    while (!isAmountInt);
+                    do
+                    {
+                        Console.Write("Add month (number): ");
+                        monthInput = Console.ReadLine();
+
+                        isMonthInt = int.TryParse(monthInput, out month);
+
+                        if (!isMonthInt)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Incorrect price format. Please enter only numbers.");
+                            Console.ResetColor();
+                        }
+                        if (month > 12)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Enter a valid month");
+                            Console.ResetColor();
+                        }
+
+                    }
+                    while (!isMonthInt || month > 12 || string.IsNullOrEmpty(monthInput));
+                    itemToEdit.editTransaction(titleInput, amount, month);
+                    transactions.displayAllTransactions();
+
                     break;
                 case "5":
                     Console.WriteLine("Delete item");
+                    Console.WriteLine($"Removing: {itemToEdit.ToString()}");
+                    Console.Write("Write 'delete' to delete: ");
+                    string deleteInput = Console.ReadLine();
+                    if(deleteInput.ToLower() == "delete")
+                    {
+                        transactions.userTransactionList.Remove(itemToEdit);
+                        Console.WriteLine("Item removed");
+                    }
+
                     break;
                 default:
                     Console.WriteLine("Invalid selection");
