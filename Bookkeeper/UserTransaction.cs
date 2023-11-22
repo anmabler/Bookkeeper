@@ -21,6 +21,10 @@ namespace Bookkeeper
             this.isIncome = isIncome;
         }
 
+
+        public override string ToString() {
+            return $"{this.getTitle().PadRight(15)} {this.getAmount().ToString().PadRight(15)} {this.getMonth().ToString().PadRight(15)} {this.getIsIncome()}";
+        }
         // Getters and setters
 
         public int getAmount()
@@ -40,12 +44,11 @@ namespace Bookkeeper
             return isIncome;
         }
         
-        public void editTransaction(string title, int amount, int month, bool isIncome)
+        public void editTransaction(string title, int amount, int month)
         {
             this.title = title;
             this.amount = amount;
             this.month = month;
-            this.isIncome = isIncome;
 
         }
 
