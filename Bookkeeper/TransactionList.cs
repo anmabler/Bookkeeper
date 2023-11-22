@@ -74,5 +74,24 @@ namespace Bookkeeper
 
             }
         }
+
+        public int countBalance()
+        {
+            int balance = 0;
+
+            for(int i = 0; i < userTransactionList.Count; i++)
+            {
+                if (userTransactionList[i].getIsIncome())
+                {
+                    balance += userTransactionList[i].getAmount();
+                }
+                else
+                {
+                    balance -= userTransactionList[i].getAmount();
+                }
+            }
+
+            return balance;
+        }
     }
 }
