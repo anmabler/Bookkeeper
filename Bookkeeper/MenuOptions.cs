@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Bookkeeper
         {
             Console.WriteLine("-----------------------------");
             Console.WriteLine("Welcome to Bookkeeper!");
+            Console.WriteLine($"Current balance: {userTransactions.countBalance()}");
             Console.WriteLine("Pick an option: ");
             Console.WriteLine("1/ Show items");
             Console.WriteLine("2/ Add new expense/income");
@@ -27,10 +29,12 @@ namespace Bookkeeper
                 case "1":
                     sortItems(userTransactions);
                     showAscendingDescending(userTransactions);
+                    mainMenu(userTransactions);
                     break;
                 case "2":
                     addNewItem(userTransactions);
                     userTransactions.displayAllTransactions();
+                    mainMenu(userTransactions);
                     break;
                 case "3":
                     editItem(userTransactions);
@@ -125,8 +129,14 @@ namespace Bookkeeper
             
 
             Console.WriteLine("Add a new item");
+            string titleInput;
+            do
+            {
             Console.Write("Add title: ");
-            var titleInput = Console.ReadLine();
+            titleInput = Console.ReadLine();
+
+            }
+            while (string.IsNullOrEmpty(titleInput));
 
             bool isAmountInt = false;
             string amountInput;
@@ -137,7 +147,7 @@ namespace Bookkeeper
                 Console.Write("Add amount: ");
                 amountInput = Console.ReadLine();
                 isAmountInt = int.TryParse(amountInput, out amount);
-                if (!isAmountInt)
+                if (!isAmountInt || string.IsNullOrEmpty(amountInput))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Incorrect price format. Please enter only numbers.");
@@ -165,7 +175,7 @@ namespace Bookkeeper
                     Console.WriteLine("Enter a valid month");
                 }
             }
-            while (!isMonthInt || month > 12);
+            while (!isMonthInt || month > 12 || string.IsNullOrEmpty(monthInput));
 
             Console.WriteLine("Pick an option:");
             Console.WriteLine("1/ Expense");
@@ -349,15 +359,11 @@ namespace Bookkeeper
                     break;
             }
 
-
-            // Get all inputs from user 
-            // if null use the original 
-            // check that index is not out of range
-
         }
         public void saveAndExit()
         {
-
+            // code to save list to file
+            Console.WriteLine("Thank you for using Bookkeeper!");
         }
     }
 }
