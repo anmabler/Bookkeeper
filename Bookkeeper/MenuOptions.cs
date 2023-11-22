@@ -200,12 +200,14 @@ namespace Bookkeeper
             var editNumInput = Console.ReadLine();
             int.TryParse(editNumInput, out int editNum);
             var itemToEdit = transactionList[editNum];
-            Console.WriteLine($"Editing: {itemToEdit.getTitle()}");
+            Console.WriteLine($"Editing: {itemToEdit.ToString()}");
             Console.WriteLine("1/ Edit title");
             Console.WriteLine("2/ Edit amount");
             Console.WriteLine("3/ Edit month");
             Console.WriteLine("4/ Edit all");
             Console.WriteLine("5/ Delete");
+            Console.WriteLine("-----------------------------");
+
             // It makes no sense to edit this
             //Console.WriteLine("4/ Edit income/expense");
             var editChoice = Console.ReadLine();
@@ -213,6 +215,14 @@ namespace Bookkeeper
             {
                 case "1":
                     Console.WriteLine("Edit title");
+                    Console.Write("Enter new title: ");
+                    var titleInput = Console.ReadLine();
+                    if (titleInput != null)
+                    {
+                        itemToEdit.editTransaction(titleInput, itemToEdit.getAmount(), itemToEdit.getMonth());
+                    }
+                    Console.WriteLine(itemToEdit.ToString());
+
                     break;
                 case "2":
                     Console.WriteLine("Edit amount");
