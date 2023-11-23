@@ -1,18 +1,21 @@
 ﻿using Bookkeeper;
-
+FileHandler fileHandler = new FileHandler();
 TransactionList transactionList = new TransactionList();
-// ! List needs to be read from file
-transactionList.userTransactionList.AddRange(new List<UserTransaction>
-{
-    new UserTransaction("Köpa skor", 800, 11, false),
-    new UserTransaction("Oktober lön", 849, 10, true),
-    new UserTransaction("Barnbidrag", 650, 10, true),
-    new UserTransaction("Julklappar", 2000, 11, false),
-    new UserTransaction("Simskola", 1600, 12, false),
+transactionList.userTransactionList.AddRange(fileHandler.loadFromFile());
 
-});
-MenuOptions menu = new MenuOptions();
-menu.mainMenu(transactionList);
+// ! List needs to be read from file
+//transactionList.userTransactionList.AddRange(new List<UserTransaction>
+//{
+//    new UserTransaction("Köpa skor", 800, 11, false),
+//    new UserTransaction("Oktober lön", 849, 10, true),
+//    new UserTransaction("Barnbidrag", 650, 10, true),
+//    new UserTransaction("Julklappar", 2000, 11, false),
+//    new UserTransaction("Simskola", 1600, 12, false),
+
+//});
+
+//MenuOptions menu = new MenuOptions();
+//menu.mainMenu(transactionList);
 
 //transactionList.displayAllTransactions();
 // the true argument means descending order.

@@ -10,6 +10,7 @@ namespace Bookkeeper
 {
     internal class MenuOptions
     {
+        // ! check if balance is correct after editing/deleting
         public void mainMenu(TransactionList userTransactions)
         {
             Console.WriteLine("-----------------------------");
