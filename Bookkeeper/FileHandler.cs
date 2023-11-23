@@ -37,5 +37,18 @@ namespace Bookkeeper
             return transactions;
             
         }
+
+        public void saveToFile(TransactionList transactionList)
+        {
+            var list = transactionList.userTransactionList;
+            List<string> listOfTransactions = new List<string>();
+            foreach (var item in list) {
+                listOfTransactions.Add($"{item.getTitle()},{item.getAmount()},{item.getMonth()},{item.getIsIncome()}");
+            }
+
+            File.WriteAllLines(path, listOfTransactions);
+
+            Console.WriteLine("List saved to file.");
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Bookkeeper
     internal class MenuOptions
     {
         // ! check if balance is correct after editing/deleting
-        public void mainMenu(TransactionList userTransactions)
+        public void mainMenu(TransactionList userTransactions, FileHandler fileHandler)
         {
             Console.WriteLine("-----------------------------");
             Console.WriteLine("Welcome to Bookkeeper!");
@@ -30,23 +30,23 @@ namespace Bookkeeper
                 case "1":
                     sortItems(userTransactions);
                     showAscendingDescending(userTransactions);
-                    mainMenu(userTransactions);
+                    mainMenu(userTransactions, fileHandler);
                     break;
                 case "2":
                     addNewItem(userTransactions);
                     userTransactions.displayAllTransactions();
-                    mainMenu(userTransactions);
+                    mainMenu(userTransactions, fileHandler);
                     break;
                 case "3":
                     editItem(userTransactions);
-                    mainMenu(userTransactions);
+                    mainMenu(userTransactions, fileHandler);
                     break;
                 case "4":
-                    saveAndExit();
+                    saveAndExit(fileHandler, userTransactions);
                     break;
                 default:
                     Console.WriteLine("Invalid selection");
-                    mainMenu(userTransactions);
+                    mainMenu(userTransactions, fileHandler);
                     break;
             }
         }
@@ -361,9 +361,9 @@ namespace Bookkeeper
             }
 
         }
-        public void saveAndExit()
+        public void saveAndExit(FileHandler fileHandler, TransactionList transactions)
         {
-            // code to save list to file
+            fileHandler.saveToFile(transactions);
             Console.WriteLine("Thank you for using Bookkeeper!");
         }
     }

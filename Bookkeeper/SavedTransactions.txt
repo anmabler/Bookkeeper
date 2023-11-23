@@ -1,7 +1,6 @@
-﻿Köpa skor,800,11,false
-Akassa,8560,10,true
-Oktober lön,849,10,true
-Barnbidrag,650,10,true
-Akassa,2800,11,true
-Julklappar,2000,11,false
-Simskola,1600,12,false
+Köpa skor,800,11,False
+Akassa,8560,10,True
+Oktober lön,849,10,True
+Barnbidrag,650,10,True
+Akassa,2800,11,True
+Simskola,1600,12,False
