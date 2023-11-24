@@ -15,7 +15,8 @@ https://github.com/anmabler/Bookkeeper.git
 
 ## Usage
 This project needs a .txt file called "SavedTransactions" in the project folder to work properly. This because the app currently has no exception handling when reading/ writing to file.
-The file should contain comma separated lines with title(string), amount(int), month(int) and true/false for income or not.
+The file should contain comma separated lines with title(string), amount(int), month(int) and a boolean value for income or not.
+
 
 ## Authors
 [Martina Blixt Eriksson](https://github.com/anmabler)
