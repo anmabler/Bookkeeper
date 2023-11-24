@@ -10,7 +10,7 @@ namespace Bookkeeper
     {
 
         string path = @"../../../SavedTransactions.txt";
-        
+        // Could use some error handling!
         public List<UserTransaction> loadFromFile()
         {
             List<string> lines = File.ReadAllLines(path).ToList();
